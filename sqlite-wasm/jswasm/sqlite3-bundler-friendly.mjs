@@ -43,10 +43,10 @@ function _classApplyDescriptorSet(receiver, descriptor, value) { if (descriptor.
  */
 
 var sqlite3InitModule = (() => {
-  var _scriptDir = import.meta.url;
   return function (config) {
     var sqlite3InitModule = config || {};
     var Module = typeof sqlite3InitModule != 'undefined' ? sqlite3InitModule : {};
+    var _scriptDir = Module['url']
     var readyPromiseResolve, readyPromiseReject;
     Module['ready'] = new Promise(function (resolve, reject) {
       readyPromiseResolve = resolve;
@@ -412,7 +412,7 @@ var sqlite3InitModule = (() => {
         wasmBinaryFile = locateFile(wasmBinaryFile);
       }
     } else {
-      wasmBinaryFile = new URL('sqlite3.wasm', import.meta.url).href;
+      wasmBinaryFile = new URL('sqlite3.wasm', _scriptDir).href;
     }
     function getBinary(file) {
       try {
@@ -8485,7 +8485,7 @@ var sqlite3InitModule = (() => {
               promiseWasRejected = false;
               return promiseResolve_(sqlite3);
             };
-            const W = new Worker(new URL('sqlite3-opfs-async-proxy.js', import.meta.url));
+            const W = new Worker(new URL('sqlite3-opfs-async-proxy.js', _scriptDir));
             setTimeout(() => {
               if (undefined === promiseWasRejected) {
                 promiseReject(new Error('Timeout while waiting for OPFS async proxy worker.'));
