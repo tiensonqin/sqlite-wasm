@@ -5624,7 +5624,7 @@ var sqlite3InitModule = (() => {
           if ('string' === typeof typeName) {
             if (1 === argc) return xcvPart.get(typeName);else if (2 === argc) {
               if (!adapter) {
-                delete xcvPart.get(typeName);
+                // delete xcvPart.get(typeName);
                 return func;
               } else if (!(adapter instanceof Function)) {
                 toss(modeName, 'requires a function argument.');
